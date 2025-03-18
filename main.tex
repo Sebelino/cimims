@@ -1,0 +1,53 @@
+\documentclass{article}
+\title{Problem set, MT5017}
+\author{Ville Sebastian Olsson}
+\usepackage[a4paper,margin=2em]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage[parfill]{parskip}
+\usepackage{hyperref} % Clickable ToC
+\usepackage{tikz}
+\usepackage[breakable]{tcolorbox}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{csquotes}
+\graphicspath{ {./images/} }
+\hypersetup{colorlinks}
+
+\usepackage{sebelino-mathlib} % Custom sty file
+\setcounter{secnumdepth}{0} % Disable numbering
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{W1}
+
+\subsection{W1:1}
+
+Consider an \(n\times n\) grid.
+Then \(T_n\) is the set of paths from \((0,0)\) to \((n,n)\),
+subject to the condition that the initial edge is pointing rightwards.
+
+Then \(T_n\) is the set of paths from \((1,0)\) to \((n,n)\).
+
+Then \(T_n\) is the set of vectors \(\mathbf{x} = (x_1,\ldots,x_{2n-1})\),
+where \(x_i\in \{-1,1\}\),
+such that \(1+\sum_{i=1}^{2n-1} x_i = 0\).
+\[T_n = \{ \mathbf{x}\in \{-1,1\}^{2n-1}: \sum_{i=1}^{2n-1} x_i = 0\}\]
+
+Then there are \(n-1\) \(x_i\) that are equal to 1:
+\[|\{i \in \{1,\ldots,2n-1\}: x_i = 1\}| = n-1\]
+
+We want to find \(|T_n|\). This is equal to the number of way to choose \(n-1\) balls
+from an urn containing \(2n-1\) balls:
+\[|T_n| = \binom{2n-1}{n-1}\]
+
+\end{document}
