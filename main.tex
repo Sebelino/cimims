@@ -47,7 +47,7 @@
 
 \section{W1}
 
-\subsection{W1:1}
+\subsection{W1:1a}
 
 Consider an \(n\times n\) grid.
 Then \(T_n\) is the set of paths from \((0,0)\) to \((n,n)\),
@@ -67,7 +67,7 @@ We want to find \(|T_n|\). This is equal to the number of way to choose \(n-1\) 
 from an urn containing \(2n-1\) balls:
 \[|T_n| = \binom{2n-1}{n-1}\]
 
-\subsection{W1:2}
+\subsection{W1:1b}
 
 Idea: Generate a large set of paths in \(T_n\), then
 count the number of paths that satisfy the condition of being a member of \(S_n\).
@@ -75,15 +75,86 @@ count the number of paths that satisfy the condition of being a member of \(S_n\
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
    Monte Carlo Estimate
-2                2.0163
-3                5.0290
-4               13.9020
+2                1.9923
+3                4.9730
+4               13.9825
+   |T_n|
+2      3
+3     10
+4     35
 \end{lstlisting}
 \end{minipage}
 
 \[c_2^{10000} \approx 2\]
 \[c_3^{10000} \approx 5\]
 \[c_4^{10000} \approx 14\]
+
+\subsection{W1:1c}
+
+\begin{align*}
+   & c_n \\
+   =& |S_n| \\
+   =& |T_n|\cdot P(X_1\text{ valid path}) \\
+   =& |T_n|\cdot P(X_1\in S_n) \\
+   \approx& |T_n|\cdot \hat{P}_N(X_1\in S_n) \\
+   =& |T_n|\cdot \frac{1}{N}\sum_{i=1}^N\mathds{1}_{S_n}(X_i) \\
+   =& |T_n|\cdot \frac{1}{N}\sum_{i=1}^N Y_i & (Y_i=\mathds{1}_{S_n}(X_i)\sim \text{Be}\left(\frac{|S_n|}{|T_n|}\right)) \\
+   =& |T_n|\cdot \bar{Y}_N \\
+   =& \dot{c}_n^N \\
+\end{align*}
+
+CLT:
+\begin{align*}
+   & \sqrt{N}\frac{\bar{Y}_N-E[Y_1]}{\sqrt{\text{Var}(Y_1)}} \xrightarrow[N\to\infty]{d} \mathcal{N}(0,1) \\
+   \Rightarrow& \frac{\bar{Y}_N-\frac{|S_n|}{|T_n|}}{\sqrt{\frac{|S_n|}{|T_n|}(1-\frac{|S_n|}{|T_n|})}} \xrightarrow[N\to\infty]{d} \mathcal{N}(0,\frac{1}{N}) \\
+   \Rightarrow& \bar{Y}_N-\frac{|S_n|}{|T_n|} \xrightarrow[N\to\infty]{d} \mathcal{N}(0,\frac{1}{N}\frac{|S_n|}{|T_n|}(1-\frac{|S_n|}{|T_n|})) \\
+   \Rightarrow& \bar{Y}_N \xrightarrow[N\to\infty]{d} \mathcal{N}\left(\frac{|S_n|}{|T_n|},\frac{|S_n|}{N|T_n|}(1-\frac{|S_n|}{|T_n|})\right) \\
+   \Rightarrow& |T_n|\cdot\bar{Y}_N \xrightarrow[N\to\infty]{d} \mathcal{N}\left(|S_n|,\frac{|S_n|}{N}(|T_n|-|S_n|)\right) \\
+   \Rightarrow& \dot{c}_n^N \xrightarrow[N\to\infty]{d} \mathcal{N}\left(|S_n|,\frac{|S_n|}{N}(|T_n|-|S_n|)\right) \\
+\end{align*}
+
+\(|T_n|\) is known.
+\(|S_n|\) is unknown, but we can estimate it with \(c_n^N\).
+\[\dot{c}_n^N \xrightarrow[N\to\infty]{d} \mathcal{N}\left(c_n^N,\frac{c_n^N}{N}(|T_n|-c_n^N)\right)\]
+
+95 \% Wald CI:
+\[c_n^N \pm z_{0.975}\sqrt{\frac{c_n^N}{N}(|T_n|-c_n^N)}\]
+\[c_n^N \pm 1.96\sqrt{\frac{c_n^N}{N}(|T_n|-c_n^N)}\]
+
+For \(n=2\):
+\[c_2^{10000} \pm 1.96\sqrt{\frac{c_2^{10000}}{10000}(|T_2|-c_n^{10000})}\]
+\[1.9923 \pm 1.96\sqrt{\frac{1.9923}{10000}(3-1.9923)}\]
+\[[1.9645,2.0201]\]
+
+For \(n=3\):
+\[[4.8750,5.0710]\]
+
+For \(n=4\):
+\[[13.6465,14.3185]\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

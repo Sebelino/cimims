@@ -43,3 +43,7 @@ import pandas as pd
 
 df = pd.DataFrame.from_dict(estimates, orient='index', columns=['Monte Carlo Estimate'])
 print(df)
+
+t_n_values = dict([(n,scipy.special.comb(2*n-1,n,exact=True)) for n in n_values])
+df = pd.DataFrame.from_dict(t_n_values, orient='index', columns=['|T_n|'])
+print(df)
