@@ -103,6 +103,11 @@ count the number of paths that satisfy the condition of being a member of \(S_n\
    =& \dot{c}_n^N \\
 \end{align*}
 
+Objective function:
+\[\phi(X_1) = \mathds{1}_{S_n}(X_1)\]
+Expectation:
+\[E[\phi(X_1)] = E[\mathds{1}_{S_n}(X_1)] = P(X_1 \in S_n) = \frac{|S_n|}{|T_n|}\]
+
 CLT:
 \begin{align*}
    & \sqrt{N}\frac{\bar{Y}_N-E[Y_1]}{\sqrt{\text{Var}(Y_1)}} \xrightarrow[N\to\infty]{d} \mathcal{N}(0,1) \\
