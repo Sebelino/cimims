@@ -19,11 +19,28 @@
 \usepackage{float}
 \usepackage{longtable}
 \usepackage{csquotes}
+\usepackage{listings}
 \graphicspath{ {./images/} }
 \hypersetup{colorlinks}
 
 \usepackage{sebelino-mathlib} % Custom sty file
 \setcounter{secnumdepth}{0} % Disable numbering
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  commentstyle=\color{green!50!black},
+  backgroundcolor=\color{yellow!10},
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  tabsize=4,
+  showstringspaces=false,
+  captionpos=b
+}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -49,5 +66,19 @@ Then there are \(n-1\) \(x_i\) that are equal to 1:
 We want to find \(|T_n|\). This is equal to the number of way to choose \(n-1\) balls
 from an urn containing \(2n-1\) balls:
 \[|T_n| = \binom{2n-1}{n-1}\]
+
+\subsection{W1:2}
+
+Idea: Generate a large set of paths in \(T_n\), then
+count the number of paths that satisfy the condition of being a member of \(S_n\).
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+   Monte Carlo Estimate
+2                2.0163
+3                5.0290
+4               13.9020
+\end{lstlisting}
+\end{minipage}
 
 \end{document}
