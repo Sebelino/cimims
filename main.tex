@@ -190,7 +190,34 @@ Catalan numbers:
 
 \subsection{W1:2b}
 
+Lagrange multiplier, with constraint \(\sum_{\ell=1}^n N_\ell = N\):
+\begin{align*}
+   & L(N_1,\ldots,N_n,\lambda) \\
+   =& \text{Var}(\tilde\tau_N)+\lambda\left(\sum_{\ell=1}^n N_\ell - N\right) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2\sigma_\ell^2(\phi)}{N_\ell}+\lambda\left(\sum_{\ell=1}^n N_\ell - N\right) \\
+\end{align*}
 
+\begin{align*}
+   & \frac{\partial}{\partial N_\ell} L(N_1,\ldots,N_n,\lambda) = 0 \\
+   \Rightarrow& \frac{\partial}{\partial N_\ell} \left(\sum_{\ell'=1}^n \frac{w_{\ell'}^2\sigma_{\ell'}^2(\phi)}{N_{\ell'}}+\lambda\left(\sum_{\ell'=1}^n N_{\ell'} - N\right)\right) = 0 \\
+   \Rightarrow&  \frac{\partial}{\partial N_\ell}\frac{w_{\ell}^2\sigma_{\ell}^2(\phi)}{N_{\ell}}+\lambda \frac{\partial}{\partial N_\ell}N_{\ell} = 0 \\
+   \Rightarrow&  -\frac{w_{\ell}^2\sigma_{\ell}^2(\phi)}{N_{\ell}^2}+\lambda  = 0 \\
+   \Rightarrow& N_\ell^2 = \frac{w_{\ell}^2\sigma_{\ell}^2(\phi)}{\lambda} \\
+   \Rightarrow& N_\ell = \frac{w_{\ell}\sigma_{\ell}(\phi)}{\sqrt\lambda} \\
+\end{align*}
+\begin{align*}
+   & \lambda = 0 \\
+   \Rightarrow& \sum_{\ell'=1}^n N_{\ell'} - N = 0 \\
+   \Rightarrow& \sum_{\ell'=1}^n \frac{w_{\ell'}\sigma_{\ell'}(\phi)}{\sqrt\lambda} - N = 0 \\
+   \Rightarrow& \frac{1}{\sqrt\lambda}\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi) = N \\
+   \Rightarrow& \sqrt{\lambda} = \frac{1}{N}\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi) \\
+   \Rightarrow& \lambda = \frac{1}{N^2}\left(\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi)\right)^2 \\
+\end{align*}
+\begin{align*}
+   & N_\ell = \frac{w_{\ell}\sigma_{\ell}(\phi)}{\sqrt\lambda} \\
+   \Rightarrow& N_\ell = \frac{w_{\ell}\sigma_{\ell}(\phi)}{\sqrt{\frac{1}{N^2}\left(\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi)\right)^2}} \\
+   \Rightarrow& N_\ell = N\frac{w_{\ell}\sigma_{\ell}(\phi)}{\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi)} \\
+\end{align*}
 
 
 
