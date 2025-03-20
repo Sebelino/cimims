@@ -145,6 +145,58 @@ Catalan numbers:
 \[c_3^{10000} = 4.9730 \approx 5\]
 \[c_4^{10000} = 13.9825 \approx 14\]
 
+\subsection{W1:2a}
+
+\[w_\ell = P(X\in\text{X}_\ell) = \int_{\text{X}_\ell} f(x)dx\]
+\[f_\ell(x) = f_{X\in\text{X}_\ell}(x) = \frac{1}{w_\ell} f(x)\mathds{1}_{\text{X}_\ell}(x)\]
+\begin{align*}
+   & \tau \\
+   =& \int_{\text{X}} \phi(x)f(x)dx \\
+   =& \sum_{\ell=1}^n\int_{\text{X}_\ell} \phi(x)f(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_{\text{X}_\ell} \phi(x)\frac{1}{w_\ell}f(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_{\text{X}} \phi(x)\frac{1}{w_\ell}f(x)\mathds{1}_{\text{X}_\ell}(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_{\text{X}} \phi(x)f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell \tau^{(\ell)} \\
+\end{align*}
+
+\[\tau^{(\ell)} = E[\phi(X)\,|\,X\in\text{X}_\ell] = \int_{\text{X}}\phi(x)f_\ell(x)dx\]
+
+\[\tau_{N_\ell}^{(\ell)} = \frac{1}{N_\ell} \sum_{i=1}^{N_\ell} \phi(X|X\in \text{X}_\ell)\]
+
+\begin{align*}
+   & \sigma_\ell^2(\phi) \\
+   =& \text{Var}(\phi(X|X\in\text{X}_\ell)) \\
+   =& E[(\phi(X|X\in\text{X}_\ell)-E[\phi(X|X\in\text{X}_\ell)])^2)] \\
+   =& E[(\phi(X|X\in\text{X}_\ell)-E[\phi(X)|X\in\text{X}_\ell])^2)] \\
+   =& E[(\phi(X|X\in\text{X}_\ell)-\tau^{(\ell)})^2)] \\
+   =& E[(\phi(X)-\tau^{(\ell)})^2|X\in\text{X}_\ell] \\
+   =& \int_\text{X}(\phi(x)-\tau^{(\ell)})^2 f_{X|X\in\text{X}_\ell}(x) dx \\
+   =& \int_\text{X}(\phi(x)-\tau^{(\ell)})^2 f_\ell(x) dx \\
+\end{align*}
+
+
+\begin{align*}
+   & \text{Var}(\tilde{\tau}_N) \\
+   =& \text{Var}\left(\sum_{\ell=1}^n w_\ell\tau_{N_\ell}^{(\ell)}\right) \\
+   =& \sum_{\ell=1}^n \text{Var}\left(w_\ell\tau_{N_\ell}^{(\ell)}\right) \\
+   =& \sum_{\ell=1}^n w_\ell^2\text{Var}\left(\tau_{N_\ell}^{(\ell)}\right) \\
+   =& \sum_{\ell=1}^n w_\ell^2\text{Var}\left( \frac{1}{N_\ell} \sum_{i=1}^{N_\ell} \phi(X_i|X_i\in\text{X}_\ell) \right) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2}{N_\ell^2}\text{Var}\left( \sum_{i=1}^{N_\ell} \phi(X_i|X_i\in\text{X}_\ell) \right) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2}{N_\ell^2}\sum_{i=1}^{N_\ell} \text{Var}\left( \phi(X_i|X_i\in\text{X}_\ell) \right) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2}{N_\ell^2}\sum_{i=1}^{N_\ell} \sigma_\ell^2(\phi) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2}{N_\ell^2}N_\ell \sigma_\ell^2(\phi) \\
+   =& \sum_{\ell=1}^n \frac{w_\ell^2}{N_\ell} \sigma_\ell^2(\phi) \\
+\end{align*}
+
+\subsection{W1:2b}
+
+
+
+
+
+
+
+
 
 
 
