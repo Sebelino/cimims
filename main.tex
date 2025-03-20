@@ -1,7 +1,7 @@
 \documentclass{article}
 \title{Problem set, MT5017}
 \author{Ville Sebastian Olsson}
-\usepackage[a5paper,margin=1em]{geometry}
+\usepackage[b5paper,margin=1em]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -217,6 +217,33 @@ Lagrange multiplier, with constraint \(\sum_{\ell=1}^n N_\ell = N\):
    & N_\ell = \frac{w_{\ell}\sigma_{\ell}(\phi)}{\sqrt\lambda} \\
    \Rightarrow& N_\ell = \frac{w_{\ell}\sigma_{\ell}(\phi)}{\sqrt{\frac{1}{N^2}\left(\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi)\right)^2}} \\
    \Rightarrow& N_\ell = N\frac{w_{\ell}\sigma_{\ell}(\phi)}{\sum_{\ell'=1}^n w_{\ell'}\sigma_{\ell'}(\phi)} \\
+\end{align*}
+
+\subsection{W1:2c}
+
+\begin{align*}
+   & \sigma^2(\phi) \\
+   =& \text{Var}(\phi(X)) \\
+   =& E[(\phi(X)-E[\phi(X)])^2] \\
+   =& E[(\phi(X)-\tau)^2] \\
+   =& \int_\text{X} (\phi(x)-\tau)^2 f(x)dx \\
+   =& \sum_{\ell=1}^n\int_{\text{X}_\ell} (\phi(x)-\tau)^2 f(x)dx \\
+   =& \sum_{\ell=1}^n\int_\text{X} (\phi(x)-\tau)^2 f(x)\mathds{1}_{\text{X}_\ell}(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} (\phi(x)-\tau)^2 \frac{1}{w_\ell}f(x)\mathds{1}_{\text{X}_\ell}(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} (\phi(x)-\tau)^2 f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} (\phi(x)-\tau^{(\ell)}+\tau^{(\ell)}-\tau)^2 f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} (A+B)^2 f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} (A^2+2AB+B^2)f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\int_\text{X} ((\phi(x)-\tau^{(\ell)})^2+2(\phi(x)-\tau^{(\ell)})(\tau^{(\ell)}-\tau)+(\tau^{(\ell)}-\tau)^2)f_\ell(x)dx \\
+   =& \sum_{\ell=1}^n w_\ell\left(\int_\text{X} (\phi(x)-\tau^{(\ell)})^2 f_\ell(x)dx+2\int_\text{X}(\phi(x)-\tau^{(\ell)})(\tau^{(\ell)}-\tau)f_\ell(x)dx+\int_\text{X}(\tau^{(\ell)}-\tau)^2f_\ell(x)dx\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2\int_\text{X}(\phi(x)-\tau^{(\ell)})(\tau^{(\ell)}-\tau)f_\ell(x)dx+\int_\text{X}(\tau^{(\ell)}-\tau)^2f_\ell(x)dx\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2\int_\text{X}(\phi(x)-\tau^{(\ell)})(\tau^{(\ell)}-\tau)f_\ell(x)dx+(\tau^{(\ell)}-\tau)^2\int_\text{X}f_\ell(x)dx\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2\int_\text{X}(\phi(x)-\tau^{(\ell)})(\tau^{(\ell)}-\tau)f_\ell(x)dx+(\tau^{(\ell)}-\tau)^2\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2(\tau^{(\ell)}-\tau)\int_\text{X}(\phi(x)-\tau^{(\ell)})f_\ell(x)dx+(\tau^{(\ell)}-\tau)^2\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2(\tau^{(\ell)}-\tau)\left(\int_\text{X}\phi(x)f_\ell(x)dx-\tau^{(\ell)}\int_\text{X}f_\ell(x)dx\right)+(\tau^{(\ell)}-\tau)^2\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+2(\tau^{(\ell)}-\tau)\left(\tau^{(\ell)}-\tau^{(\ell)}\right)+(\tau^{(\ell)}-\tau)^2\right) \\
+   =& \sum_{\ell=1}^n w_\ell\left(\sigma_\ell^2(\phi)+(\tau^{(\ell)}-\tau)^2\right) \\
+   =& \sum_{\ell=1}^n w_\ell \sigma_\ell^2(\phi)+\sum_{\ell=1}^n w_\ell(\tau^{(\ell)}-\tau)^2 \\
 \end{align*}
 
 
