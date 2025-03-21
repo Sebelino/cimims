@@ -67,6 +67,9 @@ We want to find \(|T_n|\). This is equal to the number of way to choose \(n-1\) 
 from an urn containing \(2n-1\) balls:
 \[|T_n| = \binom{2n-1}{n-1}\]
 
+The reason for having an initial right-edge is for efficiency. It is guaranteed
+that \(S_n\) will start with a right-edge (and edge pointing upwards).
+
 \subsection{W1:1b}
 
 Idea: Generate a large set of paths in \(T_n\), then
@@ -246,8 +249,56 @@ Lagrange multiplier, with constraint \(\sum_{\ell=1}^n N_\ell = N\):
    =& \sum_{\ell=1}^n w_\ell \sigma_\ell^2(\phi)+\sum_{\ell=1}^n w_\ell(\tau^{(\ell)}-\tau)^2 \\
 \end{align*}
 
+\subsection{W1:2d (draft)}
+
+Want to show
+\[\text{Var}(\tilde{\tau}_N) \leq \text{Var}(\tau_N)\]
+
+\begin{align*}
+   & \text{Var}(\tilde\tau_N) \\
+   =& \text{Var}\left(\sum_{\ell=1}^n w_\ell \tau_N^{(\ell)}\right) \\
+   =& \sum_{\ell=1}^n w_\ell^2 \text{Var}(\tau_N^{(\ell)}) \\
+   =& \sum_{\ell=1}^n w_\ell^2 \frac{\sigma^2(\phi)}{N_\ell} \\
+   =& \sigma^2(\phi)\sum_{\ell=1}^n w_\ell^2 \frac{1}{N_\ell} \\
+\end{align*}
 
 
+\subsection{W1:3 (draft)}
+
+\begin{align*}
+   & F(x) \\
+   =& \int_{-\infty}^x \frac{e^{-y}}{(1+e^{-y})}dy \\
+   =& \left[\frac{1}{1+e^{-y}}\right]_{-\infty}^x \\
+   =& \frac{1}{1+e^{-x}} \\
+\end{align*}
+
+\begin{align*}
+   & F^{\leftarrow}(x) \\
+   =& \ln(\frac{1-u}{u}) \\
+\end{align*}
+
+\subsection{W1:4 (draft)}
+
+No standard inverse in this case, so let's use the generalized inverse.
+\[F^{\leftarrow}(u) = \inf \{x:F(x) \geq u\}\]
+
+Table-look-up method:
+
+\begin{align*}
+   & u & [0,p(0)] & [p(0),p(0)+p(1)] & [p(0)+p(1)), p(0)+p(1)+p(2)] \\
+   & F^{\leftarrow}(u) & 0 & 1 & 2 \\
+\end{align*}
+
+
+\subsection{W1:8 (draft)}
+
+Make Taylor expansion of \(\phi(\tau_N)\) around \(\phi(\tau)\).
+
+\[\phi(\tau_N) = \phi(\tau) + \phi'(\zeta)(\tau_N - \tau)\]
+
+\(\zeta\) belongs to the line segments between \(\tau_N\) and \(\tau\).
+
+\[\Rightarrow \sqrt{N}(\phi(\tau_N) - \phi(\tau)) = \phi'(\zeta)\]
 
 
 
